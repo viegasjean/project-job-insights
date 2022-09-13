@@ -34,39 +34,31 @@ def get_unique_industries(path):
     unique_industries = []
     for job in jobs:
         industry = job["industry"]
-        if industry not in unique_industries and industry != '':
+        if industry not in unique_industries and industry != "":
             unique_industries.append(industry)
     return unique_industries
 
 
 def filter_by_industry(jobs, industry):
-    """Filters a list of jobs by industry
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    industry : str
-        Industry for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided industry
-    """
-    return []
+    return [job for job in jobs if industry == job["industry"]]
 
 
 def get_max_salary(path):
     jobs = read(path)
-    return max([int(job["max_salary"])
-                for job in jobs if job["max_salary"].isnumeric()])
+    return max(
+        [
+            int(job["max_salary"])
+            for job in jobs
+            if job["max_salary"].isnumeric()
+        ]
+    )
 
 
 def get_min_salary(path):
     jobs = read(path)
-    return min([int(job["min_salary"])
-                for job in jobs if job['min_salary'].isdigit()])
+    return min(
+        [int(job["min_salary"]) for job in jobs if job["min_salary"].isdigit()]
+    )
 
 
 def matches_salary_range(job, salary):
