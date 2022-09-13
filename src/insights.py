@@ -75,10 +75,7 @@ def matches_salary_range(job: dict, salary: int):
         raise ValueError("max_salary and min_salary must be int")
 
 
-# print(matches_salary_range({"max_salary": -3, "min_salary": 0}, 2))
-
-
-def filter_by_salary_range(jobs, salary):
+def filter_by_salary_range(jobs: list, salary: int):
     """Filters a list of jobs by salary range
 
     Parameters
@@ -93,4 +90,12 @@ def filter_by_salary_range(jobs, salary):
     list
         Jobs whose salary range contains `salary`
     """
-    return []
+
+    return [
+        job for job in jobs
+        if type(salary) == int
+        and type(job["max_salary"]) == int
+        and type(job["min_salary"]) == int
+        and job["max_salary"] > job["min_salary"]
+        and matches_salary_range(job, salary)
+    ]
