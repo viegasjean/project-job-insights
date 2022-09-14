@@ -92,7 +92,8 @@ def filter_by_salary_range(jobs: list, salary: int):
     """
 
     return [
-        job for job in jobs
+        job
+        for job in jobs
         if type(salary) == int
         and type(job["max_salary"]) == int
         and type(job["min_salary"]) == int
